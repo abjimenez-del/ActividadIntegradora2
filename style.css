@@ -1,39 +1,53 @@
+/* ===== Paleta: un solo color principal (azul marino) ===== */
+:root{
+  --primario:#1e3a8a;        /* azul marino: título, botones, números */
+  --primario-oscuro:#172554; /* hover */
+  --primario-claro:#eff6ff;  /* tarjetas y fondos suaves */
+  --fondo:#f1f5f9;
+  --texto:#1e293b;
+  --borde:#cbd5e1;
+  --peligro:#b91c1c;
+  --peligro-oscuro:#991b1b;
+  --alta:#dc2626; --media:#f59e0b; --baja:#16a34a;
+}
+
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,Arial,sans-serif;background: #f4f2fa ;color:#1e293b}
+body{margin:0;font-family:system-ui,Arial,sans-serif;background:var(--fondo);color:var(--texto)}
 .app{max-width:720px;margin:2rem auto;padding:1.5rem;background:#fff;border-radius:12px;box-shadow:0 2px 10px #0001}
-h1{margin-top:0;color:#6d28d9}
+h1{margin-top:0;color:var(--primario)}
 .dashboard{display:flex;gap:.75rem;margin-bottom:1rem}
-.card{flex:1;text-align:center;background:#f5f3ff;border-radius:8px;padding:.75rem}
-.card span{display:block;font-size:1.8rem;font-weight:700;color:#1d4ed8}
+.card{flex:1;text-align:center;background:var(--primario-claro);border-radius:8px;padding:.75rem}
+.card span{display:block;font-size:1.8rem;font-weight:700;color:var(--primario)}
 form,.controles{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
 input[type=text],input[type=search]{flex:1;min-width:160px}
-input,select,button{padding:.55rem;border:1px solid #cbd5e1;border-radius:6px;font-size:1rem}
-button{background:#1d4ed8;color:#fff;border:none;cursor:pointer}
-button:hover{background: #5b21b6}
-.error{color:#b91c1c;min-height:1.2rem;margin:.25rem 0 .75rem}
-.notificacion{padding:.75rem 1rem;border-radius:6px;background:#fee2e2;color:#991b1b;margin-bottom:1rem}
+input,select,button{padding:.55rem;border:1px solid var(--borde);border-radius:6px;font-size:1rem}
+input[type=checkbox]{accent-color:var(--primario)}
+button{background:var(--primario);color:#fff;border:none;cursor:pointer}
+button:hover{background:var(--primario-oscuro)}
+.error{color:var(--peligro);min-height:1.2rem;margin:.25rem 0 .75rem}
+.notificacion{padding:.75rem 1rem;border-radius:6px;background:#fee2e2;color:var(--peligro-oscuro);margin-bottom:1rem}
 .oculto{display:none}
 .lista{list-style:none;padding:0;margin:1rem 0 0}
 .tarea{display:flex;align-items:center;gap:.6rem;padding:.7rem;border-bottom:1px solid #e2e8f0}
 .tarea .titulo{flex:1}
 .tarea.completada .titulo{text-decoration:line-through;color:#94a3b8}
 .badge{font-size:.75rem;padding:.15rem .5rem;border-radius:999px;color:#fff}
-.p-3{background:#dc2626}.p-2{background:#f59e0b}.p-1{background:#16a34a}
+.p-3{background:var(--alta)}.p-2{background:var(--media)}.p-1{background:var(--baja)}
 .tarea button{padding:.3rem .6rem;font-size:.85rem}
-.tarea .del{background:#dc2626}
+.tarea .del{background:var(--peligro)}
 .vacio{text-align:center;color:#64748b;padding:1rem}
 
 /* ===== Animaciones y efectos hover ===== */
 .card { transition: transform .2s ease, box-shadow .2s ease; }
-.card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px #1d4ed822; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px #1e3a8a22; }
 
 button, input, select { transition: background-color .2s ease, transform .1s ease, box-shadow .2s ease, border-color .2s ease; }
 button:active { transform: scale(.96); }
-input:focus, select:focus { outline: none; border-color: #1d4ed8; box-shadow: 0 0 0 3px #1d4ed833; }
+input:focus, select:focus { outline: none; border-color: var(--primario); box-shadow: 0 0 0 3px #1e3a8a33; }
 
 .tarea { transition: background-color .2s ease; }
 .tarea:hover { background: #f8fafc; }
-.tarea .del:hover { background: #991b1b; }
+.tarea .del:hover { background: var(--peligro-oscuro); }
 .tarea .titulo { transition: color .2s ease; }
 
 .badge { transition: transform .2s ease; }

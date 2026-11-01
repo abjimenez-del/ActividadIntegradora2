@@ -37,7 +37,7 @@ function mostrarNotificacion(msg) {
 /* ============ Carga inicial: API con fetch + async/await ============ */
 async function cargarInicial() {
   const guardadas = leer();
-  if (guardadas && guardadas.length) {         // localStorage tiene datos: no se duplica
+  if (guardadas !== null) {                    // ya hay datos guardados (aunque sea lista vacía): no se reimporta
     tareas = guardadas;
     return notificarCambio();
   }
@@ -54,7 +54,12 @@ async function cargarInicial() {
       prioridad: (i % 3) + 1,
       creada: base - i * 60000
     }));
-  }  finally {
+  } catch (err) {
+    const sinRed = err instanceof TypeError;   // fetch lanza TypeError si no hay conexión
+    mostrarNotificacion(sinRed
+      ? 'No se pudo conectar con el servidor. Revisa tu conexión a internet.'
+      : 'No se pudieron cargar las tareas. ' + err.message);
+  } finally {
     $('cargando').classList.add('oculto');
   }
   notificarCambio();
