@@ -151,7 +151,7 @@ function renderLista() {
     ? visibles.map(t => `
       <li class="tarea ${t.completada ? 'completada' : ''}" data-id="${t.id}">
         <input type="checkbox" class="chk" ${t.completada ? 'checked' : ''} aria-label="Completada">
-        <span class="titulo">${esc(t.titulo)}</span>
+        <span class="titulo">${esc(t.titulo)}<small class="fecha">${new Date(t.creada).toLocaleDateString('es-EC')}</small></span>
         <span class="badge p-${t.prioridad}">${NOMBRE_PRIORIDAD[t.prioridad]}</span>
         <button class="edit">Editar</button>
         <button class="del">Eliminar</button>
