@@ -42,6 +42,7 @@ async function cargarInicial() {
     return notificarCambio();
   }
   try {
+    $('cargando').classList.remove('oculto');
     const resp = await fetch(API_URL);
     if (!resp.ok) throw new Error('Error del servidor: ' + resp.status);
     const datos = await resp.json();
@@ -53,9 +54,8 @@ async function cargarInicial() {
       prioridad: (i % 3) + 1,
       creada: base - i * 60000
     }));
-  } catch (err) {
-    tareas = leer() || [];
-    mostrarNotificacion('No se pudieron cargar las tareas de internet. Puedes seguir trabajando sin conexión.');
+  }  finally {
+    $('cargando').classList.add('oculto');
   }
   notificarCambio();
 }
